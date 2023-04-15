@@ -1,9 +1,16 @@
 #This code contains two parts: an Arduino sketch (C++) and an Android app (Java) that work together to create a pet feeder controlled through the internet using Firebase Realtime Database.
 
+![Untitled video - Made with Clipchamp (7)](https://user-images.githubusercontent.com/39882035/232186975-6f295037-e422-475b-a933-a941638bf567.gif)
+
+
 The Arduino sketch controls a servo motor to feed the pet, while the Android app allows the user to log in and control the feeder remotely.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Arduino sketch (C++):
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+![Untitled video - Made with Clipchamp (8)](https://user-images.githubusercontent.com/39882035/232186957-62c1ad88-8552-4842-94a8-26bd89248191.gif)
+
+
 1. Import necessary libraries
 ```
 #include <Servo.h>
@@ -72,10 +79,17 @@ if (Firebase.ready() && (millis() - sendDataPrevMillis > 5000 || sendDataPrevMil
 
 ```
 
+![Untitled video - Made with Clipchamp](https://user-images.githubusercontent.com/39882035/232187100-a2f3be9b-aed5-40ce-882a-83a67d046747.gif)
+
+
 Android Application ( Java )
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Login.java
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+![u](https://user-images.githubusercontent.com/39882035/232186914-6bdfff7c-05dc-4a07-aed1-059910882331.png)
+
+
 This code is an Android application activity called Login, which is responsible for handling user login for an app named "PetFeedTwo". The activity uses Firebase Authentication to authenticate the users. Here's a detailed explanation of the code:
 
 1. Import necessary libraries and classes for the Android application activity and Firebase Authentication.
