@@ -38,8 +38,8 @@ Date: 2023 - 04 - 07
 #define DATABASE_URL "nodemcu8266-9edee-default-rtdb.firebaseio.com" //<databaseName>.firebaseio.com or <databaseName>.<region>.firebasedatabase.app
 
 /* 4. Define the user Email and password that alreadey registerd or added in your project */
-#define USER_EMAIL "kgb2872@gmail.com"
-#define USER_PASSWORD "Rla1234@"
+#define USER_EMAIL "USER-EMAIL"
+#define USER_PASSWORD "USER-PASSWRD"
 
 // Define Firebase Data object
 FirebaseData fbdo;
