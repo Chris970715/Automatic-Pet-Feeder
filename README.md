@@ -72,10 +72,8 @@ if (Firebase.ready() && (millis() - sendDataPrevMillis > 5000 || sendDataPrevMil
 
 ```
 
-
+Android Application ( Java )
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Android app (Java):
-
 Login.java
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 This code is an Android application activity called Login, which is responsible for handling user login for an app named "PetFeedTwo". The activity uses Firebase Authentication to authenticate the users. Here's a detailed explanation of the code:
