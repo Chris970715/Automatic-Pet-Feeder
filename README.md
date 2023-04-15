@@ -295,3 +295,57 @@ button.setOnClickListener(new View.OnClickListener() {
 });
 ```
 This code sets an OnClickListener on the logout button that signs out the current user from Firebase Authentication and starts the Login activity.
+
+  9. Changing variable value in Firebase Realtime Database
+```
+mFeedButton.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        mDatabaseRef.child("test/FEED_STATUS").setValue(true);
+    }
+});
+
+mStopFeedButton.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        mDatabaseRef.child("test/FEED_STATUS").setValue(false);
+    }
+});
+```
+These code snippets set OnClickListener on the mFeedButton and mStopFeedButton buttons that change the value of the "FEED_STATUS" variable in the Firebase Realtime Database to either true or false, respectively. The mDatabaseRef.child() method specifies the location of the variable in the database.
+
+  10. Displaying current time and date
+```
+TimeZone timeZone = TimeZone.getTimeZone("America/Toronto");
+
+final SimpleDateFormat dateFormatDate = new SimpleDateFormat("MMMM d, yyyy", Locale.getDefault());
+dateFormatDate.setTimeZone(timeZone);
+
+final SimpleDateFormat dateFormatTime = new SimpleDateFormat("h:mm:ss a", Locale.getDefault());
+dateFormatTime.setTimeZone(timeZone);
+
+TextView currentDate = findViewById(R.id.current_date_text);
+TextView currentTime = findViewById(R.id.current_time_text);
+
+final Calendar calendar = Calendar.getInstance(timeZone);
+final Runnable updateDateRunnable = new Runnable() {
+    @Override
+    public void run() {
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        currentDate.setText(dateFormatDate.format(calendar.getTime()));
+        currentDate.postDelayed(this, 1000);
+    }
+};
+updateDateRunnable.run();
+
+final Runnable updateTimeRunnable = new Runnable() {
+    @Override
+    public void run() {
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        currentTime.setText(dateFormatTime.format(calendar.getTime()));
+        currentTime.postDelayed(this, 1000);
+    }
+};
+updateTimeRunnable.run();
+```
+This section sets the time zone, creates two SimpleDateFormat objects to format the date and time, finds the TextView widgets to display the date and time, creates a Calendar object to get the current date and time, and sets two Runnable objects to update the date and time TextViews every second.
