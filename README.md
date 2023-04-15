@@ -1,9 +1,9 @@
 #This code contains two parts: an Arduino sketch (C++) and an Android app (Java) that work together to create a pet feeder controlled through the internet using Firebase Realtime Database.
 
 The Arduino sketch controls a servo motor to feed the pet, while the Android app allows the user to log in and control the feeder remotely.
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Arduino sketch (C++):
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1. Import necessary libraries
 ```
 #include <Servo.h>
@@ -71,7 +71,7 @@ if (Firebase.ready() && (millis() - sendDataPrevMillis > 5000 || sendDataPrevMil
 }
 
 ```
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Android app (Java):
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
