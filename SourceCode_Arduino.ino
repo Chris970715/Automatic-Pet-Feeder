@@ -1,10 +1,3 @@
-/*
-File: Source Code of Arduino
-Course: TPJ655 NCD
-Name: Sunghyun Park, Gyubum Kim
-Student #: 109226209, 101492171
-Date: 2023 - 04 - 07
-*/
 
 
 #include <Servo.h>
