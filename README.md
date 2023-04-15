@@ -1,21 +1,27 @@
-# Automatic-Pet-Feeder
+#This code contains two parts: an Arduino sketch (C++) and an Android app (Java) that work together to create a pet feeder controlled through the internet using Firebase Realtime Database.
 
-This code is a C++ sketch for an Arduino-based microcontroller (ESP32, ESP8266, or PICO_RP2040) that controls a servo motor based on data stored in a Firebase Realtime Database. The sketch is intended to be compiled and uploaded to a compatible microcontroller using the Arduino IDE.
+The Arduino sketch controls a servo motor to feed the pet, while the Android app allows the user to log in and control the feeder remotely.
 
-Here's a detailed overview of the code that you can use as a description for your GitHub repository:
+Arduino sketch (C++):
 
-Title: Servo Motor Control using Firebase Realtime Database
+Imports necessary libraries for Firebase Realtime Database, Wi-Fi, and Servo Motor control.
+Sets Wi-Fi, Firebase API Key, and user credentials.
+Defines a Firebase Data object, Firebase Auth, and Firebase Config objects.
+Initializes the Servo motor on pin 4.
+Sets up the Wi-Fi connection in the setup() function.
+Initializes the Firebase library and sets up the automatic Wi-Fi reconnection.
+Sets the Firebase token status callback function.
+In the loop() function, checks if the Firebase is ready and if 5 seconds have passed. If true, it reads the "FEED_STATUS" value from the Firebase Realtime Database. If the value is true, it moves the servo motor to the 0-degree position (feeding), updates the "FEED_STATUS" to false, and sets the servo motor back to the 90-degree position (not feeding).
+Android app (Java):
 
-Description:
-
-This project demonstrates how to control a servo motor using an ESP32, ESP8266, or PICO_RP2040 microcontroller connected to a Firebase Realtime Database. The microcontroller retrieves the status of the motor from the database and controls the motor accordingly.
-
-Features:
-
-Compatible with ESP32, ESP8266, and PICO_RP2040 microcontrollers
-Connects to Firebase Realtime Database to retrieve motor status
-Controls a servo motor based on the motor status from the database
-Dependencies:
+Imports necessary libraries for Firebase Authentication and Android app components.
+Declares UI elements such as email, password input fields, login button, progress bar, and register text view.
+Initializes the FirebaseAuth instance.
+In the onStart() method, checks if a user is already logged in. If true, opens the MainActivity and finishes the Login activity.
+In the onCreate() method, sets up UI elements and OnClickListener events for the register TextView and login button.
+When the login button is clicked, it validates the email and password input, then uses the FirebaseAuth instance to sign in with the provided email and password.
+If the login is successful, it opens the MainActivity and finishes the Login activity. If it fails, a toast message is displayed.
+In summary, this code controls a pet feeder by actuating a servo motor based on the value of "FEED_STATUS" in the Firebase Realtime Database. The Android app allows the user to log in and control the feeder remotely by updating the "FEED_STATUS" value.
 
 Servo library
 Arduino core library
