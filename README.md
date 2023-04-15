@@ -501,3 +501,45 @@ public class Register extends AppCompatActivity {
 8. A toast message is displayed to notify the user about the successful registration and the activity is finished.
 
 9 .If the registration fails, a toast message is displayed notifying the user about the authentication failure.
+
+--------------------------------------------------------------------------------------------------------------------------
+User.java
+--------------------------------------------------------------------------------------------------------------------------
+
+```
+package com.example.petfeedtwo;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+public class User {
+    public String email;
+    public String password;
+
+    public User() {
+        // Default constructor required for calls to DataSnapshot.getValue(User.class)
+    }
+```
+1 .This is a simple Java class named User containing two instance variables email and password.
+
+2. The User class has a default constructor that is required for calls to DataSnapshot.getValue(User.class) in Firebase Realtime Database.
+
+```
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+```
+1. The User class has a constructor that takes in two parameters email and password to initialize the instance variables email and password.
+
+```
+    public String getPassword() {
+        return password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+```
+1. The getPassword() and getEmail() methods are getter methods that return the values of the password and email instance variables respectively. These methods are used to retrieve user data from the Firebase Realtime Database in other parts of the application.
