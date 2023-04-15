@@ -82,12 +82,21 @@ if (Firebase.ready() && (millis() - sendDataPrevMillis > 5000 || sendDataPrevMil
 ![Untitled video - Made with Clipchamp](https://user-images.githubusercontent.com/39882035/232187100-a2f3be9b-aed5-40ce-882a-83a67d046747.gif)
 
 
+
+
+![u](https://user-images.githubusercontent.com/39882035/232186914-6bdfff7c-05dc-4a07-aed1-059910882331.png)
 Android Application ( Java )
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Login.java
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-![u](https://user-images.githubusercontent.com/39882035/232186914-6bdfff7c-05dc-4a07-aed1-059910882331.png)
+If login fail, the pop-up alert on the bottom will say failded
+![login _fail](https://user-images.githubusercontent.com/39882035/232190313-588a5652-6918-4314-b02d-4009d700ffea.gif)
+
+If login success, the app will bring users to the main page
+
+![Untitled video - Made with Clipchamp (11)](https://user-images.githubusercontent.com/39882035/232190351-c51af6fe-a9a5-46e9-a18f-b73c11b51745.gif)
+
 
 
 This code is an Android application activity called Login, which is responsible for handling user login for an app named "PetFeedTwo". The activity uses Firebase Authentication to authenticate the users. Here's a detailed explanation of the code:
@@ -393,6 +402,14 @@ This is an Android Studio project written in Java for user registration with Fir
 Register.java
 --------------------------------------------------------------------------------------------------------------------------
 ```
+![Untitled video - Made with Clipchamp (6)](https://user-images.githubusercontent.com/39882035/232188587-6773fdc6-bcf3-4dd6-9427-4613e6841af2.gif)
+
+
+![Untitled video - Made with Clipchamp (10)](https://user-images.githubusercontent.com/39882035/232189018-d4c325e6-dd58-4c2f-ae52-471013715e0e.gif)
+
+
+
+
 package com.example.petfeedtwo;
 
 import androidx.annotation.NonNull;
