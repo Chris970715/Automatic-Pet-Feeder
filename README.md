@@ -214,3 +214,24 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 ```
+This section imports necessary classes and libraries used in the code, such as the Android activities, Firebase authentication and database, and date/time formatting libraries.
+
+  2. Class definition
+```
+public class MainActivity extends AppCompatActivity
+```
+This is the definition of the MainActivity class that extends the AppCompatActivity class in Android.
+
+  3.Class variables declaration
+```
+private DatabaseReference mDatabaseRef;
+private Button mFeedButton;
+private Button mStopFeedButton;
+private TextView mCurrentTime;
+
+FirebaseAuth auth;
+Button button;
+FirebaseUser user;
+TextView textView;
+```
+These are the class variables declared for later use in the code. They include DatabaseReference object to reference the Firebase Realtime Database, Buttons to trigger actions, TextViews to display data, and FirebaseAuth and FirebaseUser objects to manage authentication.
