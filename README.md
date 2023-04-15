@@ -330,6 +330,13 @@ mFeedButton.setOnClickListener(new View.OnClickListener() {
     }
 });
 
+```
+
+![Untitled video - Made with Clipchamp (1)](https://user-images.githubusercontent.com/39882035/232187416-864a565e-3e89-4a7f-9109-df26e3c84122.gif)
+
+
+```
+
 mStopFeedButton.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
@@ -337,6 +344,11 @@ mStopFeedButton.setOnClickListener(new View.OnClickListener() {
     }
 });
 ```
+
+![Untitled video - Made with Clipchamp (4)](https://user-images.githubusercontent.com/39882035/232187448-9feac7d6-6d86-4fb9-91fa-dc5090fdbf74.gif)
+
+
+
 These code snippets set OnClickListener on the mFeedButton and mStopFeedButton buttons that change the value of the "FEED_STATUS" variable in the Firebase Realtime Database to either true or false, respectively. The mDatabaseRef.child() method specifies the location of the variable in the database.
 
   10. Displaying current time and date
