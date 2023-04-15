@@ -87,12 +87,11 @@ if (Firebase.ready() && (millis() - sendDataPrevMillis > 5000 || sendDataPrevMil
 
 
 Android Application ( Java )
-
-![u](https://user-images.githubusercontent.com/39882035/232186914-6bdfff7c-05dc-4a07-aed1-059910882331.png)
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Login.java
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+![u](https://user-images.githubusercontent.com/39882035/232186914-6bdfff7c-05dc-4a07-aed1-059910882331.png)
 
 
 If login fail, the pop-up alert on the bottom will say failded
