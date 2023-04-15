@@ -186,3 +186,10 @@ buttonLogin.setOnClickListener(new View.OnClickListener() {
     }
 });
 ```
+This code below uses the Firebase Realtime Database and Firebase Authentication to authenticate and retrieve data of the currently logged-in user. It also has functionality to control a feed dispenser by changing the value of a variable in the Firebase Realtime Database.
+---------------------------------------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------------------------------------
+MainAvtivity.js
+---------------------------------------------------------------------------------------------------------------------------
+fds
