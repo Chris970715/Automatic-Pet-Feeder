@@ -206,6 +206,15 @@ MainActivity.java
 ---------------------------------------------------------------------------------------------------------------------------
 This code below uses the Firebase Realtime Database and Firebase Authentication to authenticate and retrieve data of the currently logged-in user. It also has functionality to control a feed dispenser by changing the value of a variable in the Firebase Realtime Database.
 ---------------------------------------------------------------------------------------------------------------------------
+  When the value is True
+  ![Untitled video - Made with Clipchamp (2)](https://user-images.githubusercontent.com/39882035/232187257-5019c561-8aa0-419b-819b-e44c0e9e5313.gif)
+  
+  When the value is false
+  
+  ![Untitled video - Made with Clipchamp (3)](https://user-images.githubusercontent.com/39882035/232187323-9ee1bfb4-8c81-43cb-9da5-1a2455e12437.gif)
+
+
+  
   1. The imports:
 ```
 import androidx.annotation.NonNull;
