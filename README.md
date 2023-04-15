@@ -4,14 +4,74 @@ The Arduino sketch controls a servo motor to feed the pet, while the Android app
 
 Arduino sketch (C++):
 
-Imports necessary libraries for Firebase Realtime Database, Wi-Fi, and Servo Motor control.
-Sets Wi-Fi, Firebase API Key, and user credentials.
-Defines a Firebase Data object, Firebase Auth, and Firebase Config objects.
-Initializes the Servo motor on pin 4.
-Sets up the Wi-Fi connection in the setup() function.
-Initializes the Firebase library and sets up the automatic Wi-Fi reconnection.
-Sets the Firebase token status callback function.
-In the loop() function, checks if the Firebase is ready and if 5 seconds have passed. If true, it reads the "FEED_STATUS" value from the Firebase Realtime Database. If the value is true, it moves the servo motor to the 0-degree position (feeding), updates the "FEED_STATUS" to false, and sets the servo motor back to the 90-degree position (not feeding).
+1. Import necessary libraries
+```
+#include <Servo.h>
+#include <Arduino.h>
+#include <FirebaseESP32.h>
+#include <FirebaseESP8266.h>
+#include <Firebase_ESP_Client.h>
+#include <addons/TokenHelper.h>
+#include <addons/RTDBHelper.h>
+```
+2. Set Wi-Fi, Firebase API Key, and user credentials
+```
+#define WIFI_SSID "BELL879"
+#define WIFI_PASSWORD "AFD4519DCFFA"
+#define API_KEY "AIzaSyA4w_wr6fsM14Rcc6rwDL4hRTxn_R1NOzc"
+#define DATABASE_URL "nodemcu8266-9edee-default-rtdb.firebaseio.com"
+#define USER_EMAIL "User_email"
+#define USER_PASSWORD "User_password"
+```
+
+3. Define Firebase Data object, FirebaseAuth, and FirebaseConfig objects
+```
+FirebaseData fbdo;
+FirebaseAuth auth;
+FirebaseConfig config;
+```
+4.Initialize the Servo motor on pin 4
+```
+byte servoPin = 4;
+Servo s1;
+```
+5.Set up the Wi-Fi connection in the setup() function
+```
+WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+```
+6. Initialize the Firebase library and set up the automatic Wi-Fi reconnection
+```
+Firebase.begin(&config, &auth);
+Firebase.reconnectWiFi(true);
+```
+7. Set the Firebase token status callback function
+```
+config.token_status_callback = tokenStatusCallback;
+```
+8. Control servo motor based on the value of "FEED_STATUS" in the loop() function
+```
+if (Firebase.ready() && (millis() - sendDataPrevMillis > 5000 || sendDataPrevMillis == 0))
+{
+  sendDataPrevMillis = millis();
+  if (Firebase.getBool(fbdo, "/test/FEED_STATUS"))
+  {
+    bool ledStatus = fbdo.boolData();
+    if (ledStatus)
+    {
+      Serial.println("Servo Motor ON");
+      s1.write(0);
+      Firebase.setBool(fbdo, "/test/FEED_STATUS", false);
+    }
+    else
+    {
+      Serial.println("Servo Motor OFF");
+      s1.write(90);
+    }
+  }
+}
+
+```
+
 Android app (Java):
 
 Imports necessary libraries for Firebase Authentication and Android app components.
