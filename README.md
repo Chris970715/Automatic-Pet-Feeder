@@ -91,6 +91,7 @@ Login.java
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 If login fail, the pop-up alert on the bottom will say failded
+
 ![login _fail](https://user-images.githubusercontent.com/39882035/232190313-588a5652-6918-4314-b02d-4009d700ffea.gif)
 
 If login success, the app will bring users to the main page
