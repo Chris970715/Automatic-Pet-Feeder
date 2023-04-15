@@ -193,9 +193,9 @@ MainAvtivity.js
 This code below uses the Firebase Realtime Database and Firebase Authentication to authenticate and retrieve data of the currently logged-in user. It also has functionality to control a feed dispenser by changing the value of a variable in the Firebase Realtime Database.
 ---------------------------------------------------------------------------------------------------------------------------
   1. The imports:
-    ```
-    import androidx.annotation.NonNull;
-  import androidx.appcompat.app.AppCompatActivity;
+```
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -212,4 +212,5 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
-    ```
+
+```
