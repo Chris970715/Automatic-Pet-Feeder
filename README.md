@@ -14,10 +14,8 @@
 #include <FirebaseESP8266.h>
 #include <Firebase_ESP_Client.h>
 #endif
-```
 
-The above code includes necessary libraries for the Arduino board used. It includes the Servo library for controlling the servo motor and libraries for connecting to Firebase Realtime Database using WiFi.
-
+/*
 <Servo.h>: Servo library for controlling servo motors.
 <Arduino.h>: Arduino core library for basic functions.
 <WiFi.h> and <ESP8266WiFi.h>: Wi-Fi library depending on the microcontroller.
@@ -25,3 +23,9 @@ The above code includes necessary libraries for the Arduino board used. It inclu
 <Firebase_ESP_Client.h>: Firebase library for PICO_RP2040.
 <TokenHelper.h>: Helper functions for handling Firebase authentication tokens.
 <RTDBHelper.h>: Helper functions for Firebase Realtime Database operations.
+*/
+```
+
+The above code includes necessary libraries for the Arduino board used. It includes the Servo library for controlling the servo motor and libraries for connecting to Firebase Realtime Database using WiFi.
+
+
