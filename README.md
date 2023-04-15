@@ -188,7 +188,7 @@ buttonLogin.setOnClickListener(new View.OnClickListener() {
 ```
 
 ---------------------------------------------------------------------------------------------------------------------------
-MainActivity.js
+MainActivity.java
 ---------------------------------------------------------------------------------------------------------------------------
 This code below uses the Firebase Realtime Database and Firebase Authentication to authenticate and retrieve data of the currently logged-in user. It also has functionality to control a feed dispenser by changing the value of a variable in the Firebase Realtime Database.
 ---------------------------------------------------------------------------------------------------------------------------
@@ -349,3 +349,205 @@ final Runnable updateTimeRunnable = new Runnable() {
 updateTimeRunnable.run();
 ```
 This section sets the time zone, creates two SimpleDateFormat objects to format the date and time, finds the TextView widgets to display the date and time, creates a Calendar object to get the current date and time, and sets two Runnable objects to update the date and time TextViews every second.
+
+
+This is an Android Studio project written in Java for user registration with Firebase Authentication and Firebase Realtime Database. Below is an explanation of the code lines in the Register.java file
+--------------------------------------------------------------------------------------------------------------------------
+Register.java
+--------------------------------------------------------------------------------------------------------------------------
+```
+package com.example.petfeedtwo;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+public class Register extends AppCompatActivity {
+
+    TextInputEditText editTextEmail, editTextPassword;
+    Button buttonReg;
+    FirebaseAuth mAuth;
+    ProgressBar progressBar;
+    TextView textView;
+
+    DatabaseReference mDatabase;
+
+    // Override the onStart method of the activity
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Get the current user from the FirebaseAuth instance
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        // If the current user is not null, start the MainActivity and finish the current activity
+        if(currentUser != null){
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+```
+1. This is the Java class named Register extending AppCompatActivity class.
+
+2. It imports necessary classes required to use in the Java class.
+
+3. The onStart() method is overridden, which is executed every time the activity starts.
+
+4. editTextEmail, editTextPassword, buttonReg, progressBar, textView are declared as private instances of their respective classes.
+
+5. mAuth and mDatabase are declared as private instances of FirebaseAuth and DatabaseReference classes respectively.
+
+```
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_register);
+        editTextEmail = findViewById(R.id.email);
+        editTextPassword = findViewById(R.id.password);
+        buttonReg = findViewById(R.id.btn_register);
+        mAuth = FirebaseAuth.getInstance();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        progressBar = findViewById(R.id.progressBar);
+        textView= findViewById(R.id.loginNow);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent((getApplicationContext()), Login.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+```
+1.The onCreate() method is overridden, which is executed once the activity is created.
+
+2. setContentView() sets the layout of the activity to the XML file activity_register.xml.
+
+3. findViewById() retrieves the respective XML elements by their ID.
+
+4. mAuth is initialized with the FirebaseAuth instance using the getInstance() method.
+
+5. mDatabase is initialized with the FirebaseDatabase instance using the getInstance() method and then with getReference() method to access the root node of the database.
+
+6. An OnClickListener is set on the textView to navigate to the Login activity when clicked.
+
+```
+                // Check if the email or password are empty, and display a toast message if they are
+                if (TextUtils.isEmpty(email)){
+                    Toast.makeText(Register.this, "Enter your email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(password)){
+                   Toast.makeText(Register.this, "Enter your password", Toast.LENGTH_SHORT).show();
+                   return;
+                }
+
+                // Register the user with the entered email and password using the createUserWithEmailAndPassword method
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                // Hide the progress bar
+                                progressBar.setVisibility(View.GONE);
+                                // If the registration is successful, display a toast message and finish the activity
+                                if (task.isSuccessful()) {
+                                    String userId = mAuth.getCurrentUser().getUid();
+                                    User user = new User(email, password);
+                                    mDatabase.child("users").child(userId).setValue(user);
+                                    Toast.makeText(Register.this, "Account Created.",
+                                            Toast.LENGTH_SHORT).show();
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Toast.makeText(Register.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
+        });
+    }
+}
+
+1. An OnClickListener is set on the buttonReg to register a new user when clicked.
+
+2. progressBar is set to be visible during the registration process.
+
+3. The user's entered email and password are retrieved from the editTextEmail and editTextPassword fields respectively.
+
+4. TextUtils.isEmpty() method checks whether email or password fields are empty or not. If empty, a toast message will be displayed asking the user to fill in the fields and the method will return without executing further.
+
+5. If both fields are filled, createUserWithEmailAndPassword() method of FirebaseAuth class is called to register the user with the entered email and password.
+
+addOnCompleteListener() method is used to monitor the registration process, whether it's successful or not.
+If the registration is successful, a new user is created with a unique userId and the user's email and password using the User class. The user data is then stored in the Firebase Realtime Database under the users node with the userId as the key using setValue() method.
+A toast message is displayed to notify the user about the successful registration and the activity is finished.
+If the registration fails, a toast message is displayed notifying the user about the authentication failure.
+```
+                // Check if the email or password are empty, and display a toast message if they are
+                if (TextUtils.isEmpty(email)){
+                    Toast.makeText(Register.this, "Enter your email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(password)){
+                   Toast.makeText(Register.this, "Enter your password", Toast.LENGTH_SHORT).show();
+                   return;
+                }
+
+                // Register the user with the entered email and password using the createUserWithEmailAndPassword method
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                // Hide the progress bar
+                                progressBar.setVisibility(View.GONE);
+                                // If the registration is successful, display a toast message and finish the activity
+                                if (task.isSuccessful()) {
+                                    String userId = mAuth.getCurrentUser().getUid();
+                                    User user = new User(email, password);
+                                    mDatabase.child("users").child(userId).setValue(user);
+                                    Toast.makeText(Register.this, "Account Created.",
+                                            Toast.LENGTH_SHORT).show();
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Toast.makeText(Register.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
+        });
+    }
+}
+```
+1. An OnClickListener is set on the buttonReg to register a new user when clicked.
+
+2. progressBar is set to be visible during the registration process.
+
+3. The user's entered email and password are retrieved from the editTextEmail and editTextPassword fields respectively.
+
+4. TextUtils.isEmpty() method checks whether email or password fields are empty or not. If empty, a toast message will be displayed asking the user to fill in the fields and the method will return without executing further.
+
+5 .If both fields are filled, createUserWithEmailAndPassword() method of FirebaseAuth class is called to register the user with the entered email and password.
+
+6. addOnCompleteListener() method is used to monitor the registration process, whether it's successful or not.
+
+7. If the registration is successful, a new user is created with a unique userId and the user's email and password using the User class. The user data is then stored in the Firebase Realtime Database under the users node with the userId as the key using setValue() method.
+
+8. A toast message is displayed to notify the user about the successful registration and the activity is finished.
+
+9 .If the registration fails, a toast message is displayed notifying the user about the authentication failure.
