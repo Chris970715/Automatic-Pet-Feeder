@@ -188,7 +188,7 @@ buttonLogin.setOnClickListener(new View.OnClickListener() {
 ```
 
 ---------------------------------------------------------------------------------------------------------------------------
-MainAvtivity.js
+MainActivity.js
 ---------------------------------------------------------------------------------------------------------------------------
 This code below uses the Firebase Realtime Database and Firebase Authentication to authenticate and retrieve data of the currently logged-in user. It also has functionality to control a feed dispenser by changing the value of a variable in the Firebase Realtime Database.
 ---------------------------------------------------------------------------------------------------------------------------
@@ -235,3 +235,63 @@ FirebaseUser user;
 TextView textView;
 ```
 These are the class variables declared for later use in the code. They include DatabaseReference object to reference the Firebase Realtime Database, Buttons to trigger actions, TextViews to display data, and FirebaseAuth and FirebaseUser objects to manage authentication.
+
+  4.onCreate() method
+```
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+```
+This is the method that runs when the activity is created. It sets the layout of the activity using the setContentView() method, which inflates the activity layout from the XML file activity_main.xml.
+
+  5. Firebase Authentication
+```
+auth = FirebaseAuth.getInstance();
+button = findViewById(R.id.logout);
+user = auth.getCurrentUser();
+textView = findViewById(R.id.user_details);
+```
+This section initializes Firebase Authentication and gets the current user. It also finds and sets the textView object to display the user's email in the UI.
+
+  6. Firebase Realtime Database
+```
+mDatabaseRef = FirebaseDatabase.getInstance().getReference();
+```
+This initializes the Firebase Realtime Database and gets a reference to its root node.
+
+  7.Retrieving user data
+  
+```
+DatabaseReference currentUserRef = mDatabaseRef.child("users").child(user.getUid());
+currentUserRef.addValueEventListener(new ValueEventListener() {
+    @Override
+    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        User currentUser = dataSnapshot.getValue(User.class);
+        if (currentUser != null) {
+            String userPassword = currentUser.getPassword();
+            String userEmail = currentUser.getEmail();
+            textView.setText(userEmail);
+        }
+    }
+    @Override
+    public void onCancelled(@NonNull DatabaseError databaseError) {
+        // Handle errors
+    }
+});
+```
+This section gets a reference to the current user's data in the Firebase Realtime Database, adds a ValueEventListener to retrieve the user data, and displays the user's email in the UI.
+
+  8.Signing out
+```
+button.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(getApplicationContext(), Login.class);
+        startActivity(intent);
+        finish();
+    }
+});
+```
+This code sets an OnClickListener on the logout button that signs out the current user from Firebase Authentication and starts the Login activity.
