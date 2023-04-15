@@ -482,6 +482,7 @@ public class Register extends AppCompatActivity {
         });
     }
 }
+```
 
 1. An OnClickListener is set on the buttonReg to register a new user when clicked.
 
@@ -492,57 +493,6 @@ public class Register extends AppCompatActivity {
 4. TextUtils.isEmpty() method checks whether email or password fields are empty or not. If empty, a toast message will be displayed asking the user to fill in the fields and the method will return without executing further.
 
 5. If both fields are filled, createUserWithEmailAndPassword() method of FirebaseAuth class is called to register the user with the entered email and password.
-
-addOnCompleteListener() method is used to monitor the registration process, whether it's successful or not.
-If the registration is successful, a new user is created with a unique userId and the user's email and password using the User class. The user data is then stored in the Firebase Realtime Database under the users node with the userId as the key using setValue() method.
-A toast message is displayed to notify the user about the successful registration and the activity is finished.
-If the registration fails, a toast message is displayed notifying the user about the authentication failure.
-```
-                // Check if the email or password are empty, and display a toast message if they are
-                if (TextUtils.isEmpty(email)){
-                    Toast.makeText(Register.this, "Enter your email", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(password)){
-                   Toast.makeText(Register.this, "Enter your password", Toast.LENGTH_SHORT).show();
-                   return;
-                }
-
-                // Register the user with the entered email and password using the createUserWithEmailAndPassword method
-                mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                // Hide the progress bar
-                                progressBar.setVisibility(View.GONE);
-                                // If the registration is successful, display a toast message and finish the activity
-                                if (task.isSuccessful()) {
-                                    String userId = mAuth.getCurrentUser().getUid();
-                                    User user = new User(email, password);
-                                    mDatabase.child("users").child(userId).setValue(user);
-                                    Toast.makeText(Register.this, "Account Created.",
-                                            Toast.LENGTH_SHORT).show();
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(Register.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-            }
-        });
-    }
-}
-```
-1. An OnClickListener is set on the buttonReg to register a new user when clicked.
-
-2. progressBar is set to be visible during the registration process.
-
-3. The user's entered email and password are retrieved from the editTextEmail and editTextPassword fields respectively.
-
-4. TextUtils.isEmpty() method checks whether email or password fields are empty or not. If empty, a toast message will be displayed asking the user to fill in the fields and the method will return without executing further.
-
-5 .If both fields are filled, createUserWithEmailAndPassword() method of FirebaseAuth class is called to register the user with the entered email and password.
 
 6. addOnCompleteListener() method is used to monitor the registration process, whether it's successful or not.
 
